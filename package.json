@@ -1,0 +1,31 @@
+{
+  "name": "fullstack-vue",
+  "version": "1.0.0",
+  "description": "Small complete application made with Vue, Node + Express and Heroku deployment",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/index.js",
+    "dev": "nodemon -r dotenv/config server/index.js"
+  },
+  "keywords": [
+    "Vue",
+    "Vue-CLI",
+    "Node",
+    "Express",
+    "Heroku",
+    "Fullstack"
+  ],
+  "author": "Ahmsanz",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.18"
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0",
+    "nodemon": "^2.0.4"
+  }
+}
