@@ -9,7 +9,7 @@ const postSchema = new mongoose.Schema({
         type: String
     },
     createdAt: {
-        type: Date
+        type: String
     },
     mainPic: {
         type: String

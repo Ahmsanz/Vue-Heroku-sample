@@ -17,7 +17,7 @@ exports.create = async (req, res) => {
         mainPic,
         content,
         tags,
-        cretedAt: new Date()
+        createdAt: new Date()
     })
     await newPost.save()
 
