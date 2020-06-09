@@ -23,13 +23,24 @@ class PostService {
     }
 
     // Create Posts
-    static createPost(content) {
-        return axios.post(url, {content})
+    static async createPost(content) {
+        const body = {
+            content
+        }
+
+        console.log(body);
+        return await axios(url, {
+            method: 'post',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: body
+        })
     }
 
     // Delete Posts
     static deletePost(postID) {
-        return axios.delete(`url/${postID}`)
+        return axios.delete(`${url}/del/${postID}`)
     }
 }
 

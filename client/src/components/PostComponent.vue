@@ -2,7 +2,21 @@
   <div class="container">
     <h1>Latest Posts</h1>
     <hr>
-    <div class="create-post"></div>
+    <div class="create-post">
+      <FormulateForm
+        @submit="sendPost"
+      >
+      <FormulateInput 
+      type="textarea"
+      placeholder="What's on your head?" 
+      v-model="content" />
+      <FormulateInput 
+        type="submit"
+        label="Send that bitch!"        
+      />     
+
+      </FormulateForm>
+    </div>
     <hr>
     <p class='error' v-if="error">{{error}}</p>    
     <div class="post"
@@ -13,6 +27,7 @@
     >
       {{post.createdAt.getDate()}}/{{post.createdAt.getMonth()}}/{{post.createdAt.getFullYear()}}
     <p class="text">{{post.content}}</p>
+    <div class="delete" v-on:click='deletePost(post._id)'>x</div>
 
     </div>
   </div>
@@ -38,7 +53,25 @@ export default {
       } catch (err) {
         this.error = err;
       }
-    }  
+  },
+  methods: {
+    async sendPost() {
+      try{
+        PostService.createPost(this.content)
+      } catch (err) {
+        this.error = err;
+      }
+    },
+    async deletePost(_id) {
+      try{
+        console.log(_id)
+        this.posts = this.posts.filter( post => post._id !== _id)
+        PostService.deletePost(_id)
+      } catch(err) {
+        this.error = err;
+      }
+    }
+  }
 }
 </script>
 
@@ -83,6 +116,10 @@ div.container{
     font-size: 22px;
     font-weight: 700;
     margin-bottom: 0;
+  }
+
+  .delete:hover {
+    cursor: pointer;
   }
 
 </style>

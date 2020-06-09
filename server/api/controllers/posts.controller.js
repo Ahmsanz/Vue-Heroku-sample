@@ -1,4 +1,6 @@
 const Post = require('../models/posts.model')
+const { v4: uuidv4 } = require('uuid');
+
 
 exports.get = async (req, res) => {
     await Post.find({})
@@ -9,9 +11,10 @@ exports.get = async (req, res) => {
 
 exports.create = async (req, res) => {
     const { userId, author, title, mainPic, content, tags } = req.body;
+    console.log(req.body); 
 
     const newPost = new Post ({
-        userId, 
+        userId: userId || uuidv4(), 
         author,
         title,
         mainPic,
@@ -22,7 +25,7 @@ exports.create = async (req, res) => {
     await newPost.save()
 
         .then( file => {
-            console.log('new post created', newPost.title);
+            console.log('new post created', newPost);
             res.send(file);
         })
         .catch( err => {
