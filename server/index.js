@@ -19,6 +19,17 @@ mongoose.connect(db, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTo
     .catch(err => console.log(err));
 
 app.use('/api/posts', posts);
+
+// Handle production
+if (process.env.NODE_ENV === 'production') {
+    // serving static folder with production files
+    app.use(express.static(__dirname + '/public/'));
+
+    // handle Single Page Application
+    app.get(/.*/, (req, res) => res.sendFile(path.join(__dirname, '/public/index.html')))
+}
+
+
 // initialize
 
 app.listen(port, () => console.log(`server started on port ${port}`));
