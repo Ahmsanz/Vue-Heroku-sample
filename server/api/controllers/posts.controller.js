@@ -1,5 +1,5 @@
 const Post = require('../models/posts.model')
-const { v4: uuidv4 } = require('uuid');
+// const { v4: uuidv4 } = require('uuid');
 
 
 exports.get = async (req, res) => {
@@ -14,7 +14,7 @@ exports.create = async (req, res) => {
     console.log(req.body); 
 
     const newPost = new Post ({
-        userId: userId || uuidv4(), 
+        userId: userId, //|| uuidv4(), 
         author,
         title,
         mainPic,
