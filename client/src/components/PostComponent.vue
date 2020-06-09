@@ -8,6 +8,7 @@
       >
       <FormulateInput 
       type="textarea"
+      id="post-content"
       placeholder="What's on your head?" 
       v-model="content" />
       <FormulateInput 
